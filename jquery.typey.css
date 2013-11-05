@@ -1,0 +1,139 @@
+.typer {
+    position: relative;
+}
+.typer ul {
+    display: none;
+}
+.typer ul, #font-list {
+    position: absolute;
+    z-index: 1000;
+    top:100%;
+    height: 400px;
+    overflow-y: scroll;
+    left: 0;
+    background-color: #222;
+    color: #fff;
+    padding: 4px;
+    box-shadow: 0 10px 10px #888;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+}
+.fonts {
+    display: none;
+}
+.typer:hover .fonts {
+    display: block;
+}
+.typer .fonts li,
+#font-list li {
+    list-style-type: none;
+    padding: 4px;
+    margin: 0;
+    height: 4em;
+    padding: 1em;
+    display: block;
+    width: auto;
+    text-align: left;
+    font-style: normal;
+    font-weight: normal;
+    font-family: "Arial";
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.3em;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+}
+.typer .fonts li a {
+    border-radius: 4px;
+    display: inline-block;
+    color: #fff;
+    margin-right: 5px;
+    border-radius:4px;
+    border: 1px solid #f1f1f1;
+    padding: 5px 8px;
+    text-decoration: none;
+}
+.fonts li.active {
+    background-color: #000;
+}
+.fonts li a:hover,
+.fonts li.active a.active {
+    background-color: #fff;
+    color: #000;
+    cursor: pointer;
+}
+.typer .fonts li .variant {
+    display: inline-block;
+    border:1px solid #555;
+    margin: 0 5px 0 0;
+    border-radius: 4px;
+    font-size: 90%;
+}
+.typer .fonts li .variant:hover {
+    background-color: #444;
+    color:#fff;
+}
+#font-toolbar {
+    background-color: #444;
+    color: #fff;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow-y: visible;
+    padding: 0;
+    width: 100%;
+    height: 50px;
+}
+#font-toolbar #font-list {
+    width: 300px;
+}
+#font-toolbar #font-list li {
+    border-bottom: 1px solid #999;
+}
+#font-toolbar ul.inline-list,
+#font-toolbar ul.inline-list li {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+#font-toolbar ul.inline-list li {
+    color: #fff;
+    line-height: 40px;
+    margin: 0;
+    text-decoration: none;
+    padding: 0.3em 1em;
+    border-right: 1px solid #555;
+    font-size: 14px;
+}
+#font-toolbar ul.inline-list li.btn {
+    background-color: #000;
+    text-align: center;
+}
+#font-toolbar ul.inline-list li.btn:hover {
+    background-color: #888;
+}
+#font-toolbar ul.inline-list li.font-history #font-list {
+    display: none;
+}
+#font-toolbar ul.inline-list li.font-history:hover > #font-list {
+    display: block;
+}
+#font-list {
+    display: block;
+    line-height: 1em;
+    height: auto;
+    left: auto;
+}
+#font-toolbar * {
+    color: #fff;
+    font-size: 14px;
+}
+#exported-css code {
+    padding: 1em;
+    background-color: #000;
+    border-radius: 6px;
+    display: block;
+    margin: 1em 0 0 0 ;
+    color: lightgreen;
+    font-size: 60%;
+}
