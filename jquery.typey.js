@@ -9,9 +9,9 @@ var fonTypey = (function (options) {
     length;
 
     if(! opts.api_key) {
+        // No point in returning a giant object if user doesn't have any API key.
         return;
     }
-
     return {
         generateRandomFonts: function(number) {
             "use strict";
