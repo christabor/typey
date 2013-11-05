@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+    <title>TYPEY Demo.</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="jquery.typey.css">
+    <link id="google-font-style" href='#' rel='stylesheet' type='text/css'>
+    <style type="text/css" id="dynamic-font"></style>
+    <style>
+    body {
+        font-size: 180%;
+    }
+    p, ul, ol {
+        font-size: 70%;
+    }
+    ul, ol {
+        margin-left: 1.3em;
+    }
+    [contenteditable="true"]:hover {
+        background-color: rgb(255, 244, 215);
+        box-shadow: inset 0 2px 2px #ccc;
+        z-index: 1;
+    }
+    :hover,
+    :focus {
+        -moz-transition: all 0.2s;
+        -webkit-transition: all 0.2s;
+        transition: all 0.2s;
+    }
+    .row {
+        margin-top: 3em;
+        margin-bottom: 2em;
+        max-width: 80%;
+    }
+    * {
+        box-sizing: border-box;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="modal fade" id="exported-css">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Your new css:</h4>
+                </div>
+                <div class="modal-body">
+                    <code data-font-export></code>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="font-toolbar">
+        <ul class="controls list-inline">
+            <li>
+                <a class="btn" href="#" id="random-button">get typey!</a>
+            </li>
+            <li>
+                <a class="btn" href="#" data-toggle="modal" data-font-exporter data-target="#exported-css">export fonts!</a>
+            </li>
+        </div>
+    </section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h3>Font History</h3>
+                <ul id="font-list" data-font-history></ul>
+            </div>
+            <div class="col-md-5">
+                <h1 class="typer"><span>This is a main heading</span><ul class="fonts"></ul></h1>
+                <p class="typer">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, ad, eligendi, quos, adipisci cumque ipsa suscipit eveniet est quod repellendus illum esse iure in cupiditate impedit commodi ex eum velit.</p>
+                <blockquote class="typer">
+                    <ul class="fonts"></ul>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis inventore modi fuga soluta alias neque consectetur! Animi, ad, quos quaerat magni voluptate voluptas atque quas quidem minus distinctio dolor error.
+                </blockquote>
+                <p class="typer">Facilis, veniam saepe natus doloribus eum reprehenderit veritatis mollitia eligendi perspiciatis quod. Debitis, quo, quis, distinctio quam officiis provident vero omnis corrupti cumque facere ipsam odit laborum suscipit repudiandae adipisci.</p>
+                <h2 class="typer"><span>Heading 2</span><ul class="fonts"></ul></h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, a, odit, quia, nostrum incidunt quasi eligendi assumenda soluta suscipit asperiores laboriosam necessitatibus quas ad harum nobis eveniet nisi. Dolor, nobis!</p>
+                <p>Cupiditate, repudiandae, non alias voluptatum dolor deleniti voluptatibus quos recusandae fugiat dolorum repellendus cum in omnis culpa explicabo placeat quidem ullam suscipit facere consequuntur repellat maiores voluptatem earum rerum praesentium.</p>
+            </div>
+            <div class="col-md-4">
+             <h3 class="typer"><span>Heading 3</span><ul class="fonts"></ul></h3>
+             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, a, odit, quia, nostrum incidunt quasi eligendi assumenda soluta suscipit asperiores laboriosam necessitatibus quas ad harum nobis eveniet nisi. Dolor, nobis!</p>
+             <h4 class="typer"><span>Heading 4</span><ul class="fonts"></ul></h4>
+             <ol>
+                <li>Lorem ipsum</li>
+                <li>Lorem ipsum</li>
+                <li>Lorem ipsum</li>
+                <li>Lorem ipsum</li>
+            </ol>
+            <h5 class="typer"><span>Heading 5</span><ul class="fonts"></ul></h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, a, odit, quia, nostrum incidunt quasi eligendi assumenda soluta suscipit asperiores laboriosam necessitatibus quas ad harum nobis eveniet nisi. Dolor, nobis!</p>
+            <h6 class="typer"><span>Heading 6</span><ul class="fonts"></ul></h6>
+            <ul>
+                <li>Lorem ipsum</li>
+                <li>Lorem ipsum</li>
+                <li>Lorem ipsum</li>
+                <li>Lorem ipsum</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
+<script src="jquery.typey.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    var myTypeLibrary = fonTypey({
+
+        // public, limited access only for github.com/christabor
+        api_key: "AIzaSyAM4K04yxd6F2-M6w8rEm4p97PMN6y2r0w"
+    });
+    myTypeLibrary.initAllFeatures('body');
+
+    // make stuff editable for demo purposes
+    $(".row").find(".typer span, ul:not(.fonts), ol, blockquote").attr("contentEditable", "true");
+});
+</script>
+</body>
+</html>

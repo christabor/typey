@@ -1,6 +1,7 @@
 var fonTypey = (function (options) {
     var defaults = {
-        api_key: ""
+        api_key: "",
+        debug_mode: true
     },
     opts = $.extend(defaults, options),
     url = 'https://www.googleapis.com/webfonts/v1/webfonts?key=' + opts.api_key,
@@ -8,8 +9,9 @@ var fonTypey = (function (options) {
     font_exports,
     length;
 
-    if(! opts.api_key) {
-        // No point in returning a giant object if user doesn't have any API key.
+    if(!opts.api_key) {
+        // No point in returning a giant object
+        // if user doesn't have any API key.
         return;
     }
     return {
@@ -27,11 +29,12 @@ var fonTypey = (function (options) {
         },
         registerRandomButton: function() {
             "use strict";
+            var self = this;
 
             // register random event
             $("#random-button").on("click", function(e){
                 e.preventDefault();
-                var rand = generateRandomFonts(4);
+                var rand = self.generateRandomFonts(4);
                 $(".fonts").eq(0).find("li .font-main").eq( rand[0] ).trigger("click");
                 $(".fonts").eq(1).find("li .font-main").eq( rand[1] ).trigger("click");
                 $(".fonts").eq(2).find("li .font-main").eq( rand[2] ).trigger("click");
@@ -43,8 +46,9 @@ var fonTypey = (function (options) {
         createFontLoaderHTML: function(items) {
             "use strict";
             var dropdown = [],
+            _items = $(items),
             self = this;
-            $(items).each(function (key, font) {
+            _items.each(function (key, font) {
                 dropdown.push('<li><a href="#" class="font-main">' + items[key].family + '</a>' + self.createVariants(items[key].family, items[key].variants) + '</li>');
             });
             return dropdown.join("");
@@ -78,13 +82,13 @@ var fonTypey = (function (options) {
         addToHistory: function (font) {
             "use strict";
 
-            // add to global object for exporting
-            return  $("#font-toolbar #font-list").prepend('<li><a href="#" class="font-main">' + font + '</a></li>');
+            $('[data-font-history]').prepend('<li>' + font + '</li>');
+            return;
         },
-        createStyleLink: function(name, weight, isWeight) {
+        createStyleLink: function(name, weight, is_weight) {
             "use strict";
             var url;
-            if(isWeight) {
+            if(is_weight) {
                 url = (name.split(" ").join("+")) + ":" + weight;
             } else {
                 url = name.split(" ").join("+");
@@ -106,19 +110,20 @@ var fonTypey = (function (options) {
         },
         createExportObject: function() {
             "use strict";
-            font_exports = roundupStyles($('h1').eq(0));
-            font_exports += roundupStyles($('h2').eq(0));
-            font_exports += roundupStyles($('h3').eq(0));
-            font_exports += roundupStyles($('h4').eq(0));
-            font_exports += roundupStyles($('h5').eq(0));
-            font_exports += roundupStyles($('h6').eq(0));
-            font_exports += roundupStyles($('blockquote').eq(0));
-            $("#exported-css").find("code").text(font_exports);
+            font_exports = this.roundupStyles($('h1').eq(0));
+            font_exports += this.roundupStyles($('h2').eq(0));
+            font_exports += this.roundupStyles($('h3').eq(0));
+            font_exports += this.roundupStyles($('h4').eq(0));
+            font_exports += this.roundupStyles($('h5').eq(0));
+            font_exports += this.roundupStyles($('h6').eq(0));
+            font_exports += this.roundupStyles($('blockquote').eq(0));
+            $('[data-font-export]').text(font_exports);
         },
         registerExports: function() {
             "use strict";
-            $("#font-toolbar").on("click", "#export-fonts", function(e) {
-                createExportObject();
+            var self = this;
+            $('[data-font-exporter]').on('click', function(e) {
+                self.createExportObject();
             });
         },
         registerFontEvents: function() {
@@ -127,15 +132,22 @@ var fonTypey = (function (options) {
             $("body").on("click", ".fonts li a", function(e){
                 e.stopImmediatePropagation();
                 e.preventDefault();
-                var name, opts, weight, style, target, variant;
+                var name,
+                opts,
+                _this = $(this),
+                weight,
+                style,
+                target,
+                variant;
+
                 target = $(this).parent().parent().parent();
 
                 $(".fonts li, .fonts li a").removeClass("active");
-                $(this).parent().addClass("active");
-                $(this).addClass("active");
+                _this.parent().addClass("active");
+                _this.addClass("active");
 
-                if($(this).hasClass('font-main')) {
-                    name = $(this).text();
+                if(_this.hasClass('font-main')) {
+                    name = _this.text();
                     target.css({
                         "font-family" : name
                     });
@@ -143,9 +155,9 @@ var fonTypey = (function (options) {
                     // add stylesheet to reference new name
                     self.createStyleLink(name, "", false);
                 } else {
-                    $(this).find('.font-main').addClass('active');
-                    name = $(this).data('font-main');
-                    variant = $(this).text();
+                    _this.find('.font-main').addClass('active');
+                    name = _this.data('font-main');
+                    variant = _this.text();
 
                     target.css({
                         "font-family": name
@@ -185,27 +197,29 @@ var fonTypey = (function (options) {
                     }
 
                     // add stylesheet to reference new name
-                    createStyleLink(name, variant, true);
+                    self.createStyleLink(name, variant, true);
                 }
 
                 // add to history...
-                this.addToHistory(name);
+                self.addToHistory(name);
                 $('.active-font').text(name + " " + (weight || "") + " " + (style || ""));
             });
 },
 initAllFeatures: function() {
-    console.log('Loading....');
+    if(opts.debug_mode) {
+        console.log('Loading....');
 
-    console.log('Loading font library...');
-    this.requestFontLibrary(true);
+        console.log('Loading font library...');
+        this.requestFontLibrary(true);
 
-    console.log('Loading random...');
-    this.registerRandomButton();
+        console.log('Loading random...');
+        this.registerRandomButton();
 
-    console.log('Loading font events...');
-    this.registerFontEvents();
+        console.log('Loading font events...');
+        this.registerFontEvents();
 
-    console.log('Loading exports...');
+        console.log('Loading exports...');
+    }
     this.registerExports();
 }
 };
