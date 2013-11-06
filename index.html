@@ -10,11 +10,59 @@
     body {
         font-size: 180%;
     }
+    html, body, p, h1, h2, h3, h4, h5, h6 {
+        font-family: 'Lato', helvetica, sans-serif;
+    }
     p, ul, ol {
         font-size: 70%;
     }
     ul, ol {
         margin-left: 1.3em;
+    }
+    .list-inline {
+        margin: 0;
+        padding: 0;
+    }
+    #font-toolbar {
+        background-color: #444;
+        color: #fff;
+        position: fixed;
+        left: 0;
+        top: 0;
+        overflow-y: visible;
+        padding: 0;
+        width: 100%;
+        z-index: 999;
+    }
+    #font-toolbar,
+    #font-toolbar a {
+        color: #fff;
+    }
+    #font-toolbar ul.
+    #font-toolbar ul li {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+    }
+    #font-toolbar li {
+        color: #fff;
+        margin: 0;
+        text-decoration: none;
+        padding: 0;
+        border-right: 1px solid #555;
+        font-size: 14px;
+    }
+    #font-toolbar li a {
+        border-radius: 0;
+        padding: 15px;
+    }
+    #font-toolbar .btn {
+        background-color: #000;
+        text-align: center;
+    }
+    #font-toolbar .btn:hover {
+        background-color: #888;
     }
     [contenteditable="true"]:hover {
         background-color: rgb(255, 244, 215);
@@ -27,13 +75,32 @@
         -webkit-transition: all 0.2s;
         transition: all 0.2s;
     }
-    .row {
-        margin-top: 3em;
-        margin-bottom: 2em;
-        max-width: 80%;
+    #intro {
+        background: purple url(bg-repeat.png);
+        margin: 2.8em 0 1em 0;
+        padding: 20px;
+        color: #fff;
+        text-align: center;
     }
     * {
         box-sizing: border-box;
+    }
+    .editable {
+        font-size: 150%;
+    }
+    #font-list {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        color: #999;
+        list-style-type: none;
+        overflow: scroll;
+        max-height: 900px;
+    }
+    #font-list li {
+        font-size: 11px;
+        border-bottom: 1px solid #f1f1f1;
+        padding: 10px 0;
     }
     </style>
 </head>
@@ -56,54 +123,73 @@
         </div>
     </div>
     <section id="font-toolbar">
-        <ul class="controls list-inline">
-            <li>
-                <a class="btn" href="#" id="random-button">get typey!</a>
-            </li>
-            <li>
-                <a class="btn" href="#" data-toggle="modal" data-font-exporter data-target="#exported-css">export fonts!</a>
-            </li>
-        </div>
-    </section>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <h3>Font History</h3>
-                <ul id="font-list" data-font-history></ul>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="controls list-inline">
+                        <li>
+                            <a class="btn" href="#" id="random-button">get typey!</a>
+                        </li>
+                        <li>
+                            <a class="btn" href="#" data-toggle="modal" data-font-exporter data-target="#exported-css">export fonts!</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="col-md-5">
-                <h1 class="typer"><span>This is a main heading</span><ul class="fonts"></ul></h1>
-                <p class="typer">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, ad, eligendi, quos, adipisci cumque ipsa suscipit eveniet est quod repellendus illum esse iure in cupiditate impedit commodi ex eum velit.</p>
-                <blockquote class="typer">
-                    <ul class="fonts"></ul>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis inventore modi fuga soluta alias neque consectetur! Animi, ad, quos quaerat magni voluptate voluptas atque quas quidem minus distinctio dolor error.
-                </blockquote>
-                <p class="typer">Facilis, veniam saepe natus doloribus eum reprehenderit veritatis mollitia eligendi perspiciatis quod. Debitis, quo, quis, distinctio quam officiis provident vero omnis corrupti cumque facere ipsam odit laborum suscipit repudiandae adipisci.</p>
-                <h2 class="typer"><span>Heading 2</span><ul class="fonts"></ul></h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, a, odit, quia, nostrum incidunt quasi eligendi assumenda soluta suscipit asperiores laboriosam necessitatibus quas ad harum nobis eveniet nisi. Dolor, nobis!</p>
-                <p>Cupiditate, repudiandae, non alias voluptatum dolor deleniti voluptatibus quos recusandae fugiat dolorum repellendus cum in omnis culpa explicabo placeat quidem ullam suscipit facere consequuntur repellat maiores voluptatem earum rerum praesentium.</p>
-            </div>
-            <div class="col-md-4">
-             <h3 class="typer"><span>Heading 3</span><ul class="fonts"></ul></h3>
-             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, a, odit, quia, nostrum incidunt quasi eligendi assumenda soluta suscipit asperiores laboriosam necessitatibus quas ad harum nobis eveniet nisi. Dolor, nobis!</p>
-             <h4 class="typer"><span>Heading 4</span><ul class="fonts"></ul></h4>
-             <ol>
-                <li>Lorem ipsum</li>
-                <li>Lorem ipsum</li>
-                <li>Lorem ipsum</li>
-                <li>Lorem ipsum</li>
-            </ol>
-            <h5 class="typer"><span>Heading 5</span><ul class="fonts"></ul></h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, a, odit, quia, nostrum incidunt quasi eligendi assumenda soluta suscipit asperiores laboriosam necessitatibus quas ad harum nobis eveniet nisi. Dolor, nobis!</p>
-            <h6 class="typer"><span>Heading 6</span><ul class="fonts"></ul></h6>
-            <ul>
-                <li>Lorem ipsum</li>
-                <li>Lorem ipsum</li>
-                <li>Lorem ipsum</li>
-                <li>Lorem ipsum</li>
-            </ul>
         </div>
     </div>
+</section>
+<div id="intro">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 lead">
+                <img src="logo.png" alt="">
+                <br>
+                <h2>Typey - a Google Font loader and UI library</h2>
+                <p>Mouse over elements to hover and edit them inline. Dropdowns will appear wherever.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row" id="main-content">
+        <div class="col-md-2">
+            <h3>Font History</h3>
+            <ul id="font-list" data-font-history></ul>
+        </div>
+        <div class="col-md-6 editable">
+            <h1 class="typer"><span>This is a main heading</span><ul class="fonts"></ul></h1>
+            <p class="typer">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, ad, eligendi, quos, adipisci cumque ipsa suscipit eveniet est quod repellendus illum esse iure in cupiditate impedit commodi ex eum velit.</p>
+            <blockquote class="typer">
+                <ul class="fonts"></ul>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis inventore modi fuga soluta alias neque consectetur! Animi, ad, quos quaerat magni voluptate voluptas atque quas quidem minus distinctio dolor error.
+            </blockquote>
+            <p class="typer">Facilis, veniam saepe natus doloribus eum reprehenderit veritatis mollitia eligendi perspiciatis quod. Debitis, quo, quis, distinctio quam officiis provident vero omnis corrupti cumque facere ipsam odit laborum suscipit repudiandae adipisci.</p>
+            <h2 class="typer"><span>Heading 2</span><ul class="fonts"></ul></h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, a, odit, quia, nostrum incidunt quasi eligendi assumenda soluta suscipit asperiores laboriosam necessitatibus quas ad harum nobis eveniet nisi. Dolor, nobis!</p>
+            <p>Cupiditate, repudiandae, non alias voluptatum dolor deleniti voluptatibus quos recusandae fugiat dolorum repellendus cum in omnis culpa explicabo placeat quidem ullam suscipit facere consequuntur repellat maiores voluptatem earum rerum praesentium.</p>
+        </div>
+        <div class="col-md-4 editable">
+         <h3 class="typer"><span>Heading 3</span><ul class="fonts"></ul></h3>
+         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, a, odit, quia, nostrum incidunt quasi eligendi assumenda soluta suscipit asperiores laboriosam necessitatibus quas ad harum nobis eveniet nisi. Dolor, nobis!</p>
+         <h4 class="typer"><span>Heading 4</span><ul class="fonts"></ul></h4>
+         <ol>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+        </ol>
+        <h5 class="typer"><span>Heading 5</span><ul class="fonts"></ul></h5>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, a, odit, quia, nostrum incidunt quasi eligendi assumenda soluta suscipit asperiores laboriosam necessitatibus quas ad harum nobis eveniet nisi. Dolor, nobis!</p>
+        <h6 class="typer"><span>Heading 6</span><ul class="fonts"></ul></h6>
+        <ul>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+            <li>Lorem ipsum</li>
+        </ul>
+    </div>
+</div>
 </div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
@@ -118,7 +204,8 @@ $(document).ready(function(){
     myTypeLibrary.initAllFeatures('body');
 
     // make stuff editable for demo purposes
-    $(".row").find(".typer span, ul:not(.fonts), ol, blockquote").attr("contentEditable", "true");
+    $('.editable').find('.typer span, p, ol, ul:not(.fonts), ol, blockquote').attr('contentEditable', 'true');
+    $('.fonts').attr('contenteditable', 'false');
 });
 </script>
 </body>

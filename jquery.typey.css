@@ -22,10 +22,8 @@
 .typer:hover .fonts {
     display: block;
 }
-.typer .fonts li,
-#font-list li {
+.typer .fonts li {
     list-style-type: none;
-    padding: 4px;
     margin: 0;
     height: 4em;
     padding: 1em;
@@ -34,7 +32,7 @@
     text-align: left;
     font-style: normal;
     font-weight: normal;
-    font-family: "Arial";
+    font-family: Helvetica, Arial, sans-serif;
     font-size: 14px;
     font-weight: normal;
     line-height: 1.3em;
@@ -42,7 +40,6 @@
     border-bottom: 1px solid #333;
 }
 .typer .fonts li a {
-    border-radius: 4px;
     display: inline-block;
     color: #fff;
     margin-right: 5px;
@@ -70,54 +67,6 @@
 .typer .fonts li .variant:hover {
     background-color: #444;
     color:#fff;
-}
-#font-toolbar {
-    background-color: #444;
-    color: #fff;
-    position: fixed;
-    left: 0;
-    top: 0;
-    overflow-y: visible;
-    padding: 0;
-    width: 100%;
-    height: 50px;
-    z-index: 999;
-}
-#font-list {
-    width: 90%;
-    position: static;
-    display: block;
-    line-height: 1em;
-}
-#font-list li {
-    font-size: 11px;
-    border-bottom: 1px solid #999;
-}
-#font-toolbar ul.
-#font-toolbar ul li {
-    height: 100%;
-    padding: 0;
-    margin: 0;
-}
-#font-toolbar li {
-    color: #fff;
-    line-height: 40px;
-    margin: 0;
-    text-decoration: none;
-    padding: 0.3em 1em;
-    border-right: 1px solid #555;
-    font-size: 14px;
-}
-#font-toolbar .btn {
-    background-color: #000;
-    text-align: center;
-}
-#font-toolbar .btn:hover {
-    background-color: #888;
-}
-#font-toolbar * {
-    color: #fff;
-    font-size: 14px;
 }
 #exported-css code {
     padding: 1em;
