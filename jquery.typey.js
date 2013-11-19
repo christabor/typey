@@ -1,6 +1,7 @@
 var fonTypey = (function (options) {
     var defaults = {
         api_key: "",
+        store_history: true,
         debug_mode: true
     },
     opts = $.extend(defaults, options),
@@ -81,8 +82,9 @@ var fonTypey = (function (options) {
         },
         addToHistory: function (font) {
             "use strict";
-
-            $('[data-font-history]').prepend('<li>' + font + '</li>');
+            if(opts.store_history) {
+                $('[data-font-history]').prepend('<li>' + font + '</li>');
+            }
             return;
         },
         createStyleLink: function(name, weight, is_weight) {
@@ -206,20 +208,9 @@ var fonTypey = (function (options) {
             });
 },
 initAllFeatures: function() {
-    if(opts.debug_mode) {
-        console.log('Loading....');
-
-        console.log('Loading font library...');
-        this.requestFontLibrary(true);
-
-        console.log('Loading random...');
-        this.registerRandomButton();
-
-        console.log('Loading font events...');
-        this.registerFontEvents();
-
-        console.log('Loading exports...');
-    }
+    this.requestFontLibrary(true);
+    this.registerRandomButton();
+    this.registerFontEvents();
     this.registerExports();
 }
 };
