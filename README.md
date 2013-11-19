@@ -15,3 +15,7 @@ $(document).ready(function(){
 
 ### Warning
 This library is undergoing some rewriting, and will likely change. It is perfectly usable as-is, but be warned, there will likely be breaking changes in the near future.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/christabor/typey/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
