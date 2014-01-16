@@ -46,7 +46,8 @@ var fonTypey = (function (options) {
                 e.preventDefault();
                 var rand = self.generateRandomFonts(dropdowns.length);
                 $.each(dropdowns, function(k, dropdown_list){
-                    $(dropdown_list).find('li .font-main').eq(rand[0]).click();
+                    var rand_key = Math.floor(Math.random() * rand.length);
+                    $(dropdown_list).find('li .font-main').eq(rand[rand_key]).click();
                 });
                 return;
             });
@@ -139,7 +140,7 @@ var fonTypey = (function (options) {
         registerFontEvents: function() {
             'use strict';
             self = this;
-            $('body').on('click', '.fonts li a', function(e){
+            dropdowns.on('click', 'li a', function(e){
                 e.stopImmediatePropagation();
                 e.preventDefault();
                 var name,
@@ -152,7 +153,9 @@ var fonTypey = (function (options) {
 
                 target = $(this).parent().parent().parent();
 
-                $('.fonts li, .fonts li a').removeClass(ACTIVE_CSS_CLASS);
+                dropdowns
+                .find('.fonts li, .fonts li a')
+                .removeClass(ACTIVE_CSS_CLASS);
                 _this.parent().addClass(ACTIVE_CSS_CLASS);
                 _this.addClass(ACTIVE_CSS_CLASS);
 
