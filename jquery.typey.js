@@ -1,16 +1,20 @@
 var fonTypey = (function (options) {
     var self;
-    var defaults = {
+    var defaults         = {
         api_key: '',
         store_history: true,
         debug_mode: true
     };
-    var opts = $.extend(defaults, options);
-    var url = 'https://www.googleapis.com/webfonts/v1/webfonts?key=' + opts.api_key;
-    var obj = {};
+    var opts             = $.extend(defaults, options);
+    var url              = 'https://www.googleapis.com/webfonts/v1/webfonts?key = ' + opts.api_key;
+    var obj              = {};
+    var ACTIVE_CSS_CLASS = 'active';
+    var random_btn       = $('[data-randomize-fonts]');
+    var font_history     = $('[data-font-history]');
+    var export_btn       = $('[data-font-exporter]');
+    var exported_content = $('[data-font-export]');
     var font_exports;
     var length;
-    var ACTIVE_CSS_CLASS = 'active';
 
     if(!opts.api_key) {
         // No point in returning a giant object
@@ -35,7 +39,7 @@ var fonTypey = (function (options) {
             self = this;
 
             // register random event
-            $('[data-randomize-fonts]').on('click', function(e){
+            random_btn.on('click', function(e){
                 e.preventDefault();
                 var rand = self.generateRandomFonts(4);
                 $('.fonts').eq(0).find('li .font-main').eq( rand[0] ).trigger('click');
@@ -85,7 +89,7 @@ var fonTypey = (function (options) {
         addToHistory: function (font) {
             'use strict';
             if(opts.store_history) {
-                $('[data-font-history]').prepend('<li>' + font + '</li>');
+                font_history.prepend('<li>' + font + '</li>');
             }
             return;
         },
@@ -121,12 +125,12 @@ var fonTypey = (function (options) {
             font_exports += this.roundupStyles($('h5').eq(0));
             font_exports += this.roundupStyles($('h6').eq(0));
             font_exports += this.roundupStyles($('blockquote').eq(0));
-            $('[data-font-export]').text(font_exports);
+            exported_content.text(font_exports);
         },
         registerExports: function() {
             'use strict';
             self = this;
-            $('[data-font-exporter]').on('click', function(e) {
+            export_btn.on('click', function(e) {
                 self.createExportObject();
             });
         },
