@@ -119,7 +119,7 @@
                     <h4 class="modal-title">Your new css:</h4>
                 </div>
                 <div class="modal-body">
-                    <code data-font-export></code>
+                    <code data-typey-font-export></code>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -133,10 +133,10 @@
                 <div class="col-md-12">
                     <ul class="controls list-inline">
                         <li>
-                            <a class="btn" href="#" id="random-button" data-randomize-fonts>get typey!</a>
+                            <a class="btn" href="#" id="random-button" data-typey-randomize-fonts>get typey!</a>
                         </li>
                         <li>
-                            <a class="btn" href="#" data-toggle="modal" data-font-exporter data-target="#exported-css">export fonts!</a>
+                            <a class="btn" href="#" data-toggle="modal" data-typey-font-exporter data-target="#exported-css">export fonts!</a>
                         </li>
                     </ul>
                 </div>
@@ -159,33 +159,33 @@
         <div class="row" id="main-content">
             <div class="col-md-2">
                 <h3>Font History</h3>
-                <ul id="font-list" data-font-history></ul>
+                <ul id="font-list" data-typey-font-history></ul>
             </div>
             <div class="col-md-6 editable">
-                <h1 class="typer"><span>This is a main heading</span><ul class="fonts"></ul></h1>
-                <p class="typer">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, ad, eligendi, quos, adipisci cumque ipsa suscipit eveniet est quod repellendus illum esse iure in cupiditate impedit commodi ex eum velit.</p>
-                <blockquote class="typer">
-                    <ul class="fonts"></ul>
+                <h1 class="typer" data-typey-editable><span>This is a main heading</span><ul class="fonts" data-typey-font-list></ul></h1>
+                <p class="typer" data-typey-editable>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, ad, eligendi, quos, adipisci cumque ipsa suscipit eveniet est quod repellendus illum esse iure in cupiditate impedit commodi ex eum velit.</p>
+                <blockquote class="typer" data-typey-editable>
+                    <ul class="fonts" data-typey-font-list></ul>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis inventore modi fuga soluta alias neque consectetur! Animi, ad, quos quaerat magni voluptate voluptas atque quas quidem minus distinctio dolor error.
                 </blockquote>
-                <p class="typer">Facilis, veniam saepe natus doloribus eum reprehenderit veritatis mollitia eligendi perspiciatis quod. Debitis, quo, quis, distinctio quam officiis provident vero omnis corrupti cumque facere ipsam odit laborum suscipit repudiandae adipisci.</p>
-                <h2 class="typer"><span>Heading 2</span><ul class="fonts"></ul></h2>
+                <p class="typer" data-typey-editable>Facilis, veniam saepe natus doloribus eum reprehenderit veritatis mollitia eligendi perspiciatis quod. Debitis, quo, quis, distinctio quam officiis provident vero omnis corrupti cumque facere ipsam odit laborum suscipit repudiandae adipisci.</p>
+                <h2 class="typer" data-typey-editable><span>Heading 2</span><ul class="fonts" data-typey-font-list></ul></h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, a, odit, quia, nostrum incidunt quasi eligendi assumenda soluta suscipit asperiores laboriosam necessitatibus quas ad harum nobis eveniet nisi. Dolor, nobis!</p>
                 <p>Cupiditate, repudiandae, non alias voluptatum dolor deleniti voluptatibus quos recusandae fugiat dolorum repellendus cum in omnis culpa explicabo placeat quidem ullam suscipit facere consequuntur repellat maiores voluptatem earum rerum praesentium.</p>
             </div>
             <div class="col-md-4 editable">
-             <h3 class="typer"><span>Heading 3</span><ul class="fonts"></ul></h3>
+             <h3 class="typer" data-typey-editable><span>Heading 3</span><ul class="fonts" data-typey-font-list></ul></h3>
              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, a, odit, quia, nostrum incidunt quasi eligendi assumenda soluta suscipit asperiores laboriosam necessitatibus quas ad harum nobis eveniet nisi. Dolor, nobis!</p>
-             <h4 class="typer"><span>Heading 4</span><ul class="fonts"></ul></h4>
+             <h4 class="typer" data-typey-editable><span>Heading 4</span><ul class="fonts" data-typey-font-list></ul></h4>
              <ol>
                 <li>Lorem ipsum</li>
                 <li>Lorem ipsum</li>
                 <li>Lorem ipsum</li>
                 <li>Lorem ipsum</li>
             </ol>
-            <h5 class="typer"><span>Heading 5</span><ul class="fonts"></ul></h5>
+            <h5 class="typer" data-typey-editable><span>Heading 5</span><ul class="fonts" data-typey-font-list></ul></h5>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, a, odit, quia, nostrum incidunt quasi eligendi assumenda soluta suscipit asperiores laboriosam necessitatibus quas ad harum nobis eveniet nisi. Dolor, nobis!</p>
-            <h6 class="typer"><span>Heading 6</span><ul class="fonts"></ul></h6>
+            <h6 class="typer" data-typey-editable><span>Heading 6</span><ul class="fonts" data-typey-font-list></ul></h6>
             <ul>
                 <li>Lorem ipsum</li>
                 <li>Lorem ipsum</li>
@@ -203,7 +203,7 @@ $(document).ready(function(){
     var myTypeLibrary = fonTypey({
 
         // public, limited access only for github.com/christabor
-        api_key: "AIzaSyAM4K04yxd6F2-M6w8rEm4p97PMN6y2r0w"
+        api_key: 'AIzaSyAM4K04yxd6F2-M6w8rEm4p97PMN6y2r0w'
     });
     myTypeLibrary.initAllFeatures('body');
 

@@ -3,16 +3,19 @@ var fonTypey = (function (options) {
     var defaults         = {
         api_key: '',
         store_history: true,
-        debug_mode: true
+        debug: false
     };
     var opts             = $.extend(defaults, options);
-    var url              = 'https://www.googleapis.com/webfonts/v1/webfonts?key = ' + opts.api_key;
+    var base_url         = 'https://www.googleapis.com/webfonts/v1/webfonts';
+    var url              = [base_url, '?key=', opts.api_key].join('');
     var obj              = {};
     var ACTIVE_CSS_CLASS = 'active';
-    var random_btn       = $('[data-randomize-fonts]');
-    var font_history     = $('[data-font-history]');
-    var export_btn       = $('[data-font-exporter]');
-    var exported_content = $('[data-font-export]');
+    var random_btn       = $('[data-typey-randomize-fonts]');
+    var font_history     = $('[data-typey-font-history]');
+    var export_btn       = $('[data-typey-font-exporter]');
+    var exported_content = $('[data-typey-font-export]');
+    var editable         = $('[data-typey-editable]');
+    var dropdowns        = $('[data-typey-font-list]');
     var font_exports;
     var length;
 
@@ -41,11 +44,10 @@ var fonTypey = (function (options) {
             // register random event
             random_btn.on('click', function(e){
                 e.preventDefault();
-                var rand = self.generateRandomFonts(4);
-                $('.fonts').eq(0).find('li .font-main').eq( rand[0] ).trigger('click');
-                $('.fonts').eq(1).find('li .font-main').eq( rand[1] ).trigger('click');
-                $('.fonts').eq(2).find('li .font-main').eq( rand[2] ).trigger('click');
-                $('.fonts').eq(3).find('li .font-main').eq( rand[3] ).trigger('click');
+                var rand = self.generateRandomFonts(dropdowns.length);
+                $.each(dropdowns, function(k, dropdown_list){
+                    $(dropdown_list).find('li .font-main').eq(rand[0]).click();
+                });
                 return;
             });
             return;
@@ -74,8 +76,8 @@ var fonTypey = (function (options) {
             $.get(url, function (d) {
                 obj.fonts = d.items;
                 if (obj.fonts) {
-                    var items = obj.fonts,
-                    length = items.length;
+                    var items = obj.fonts;
+                    var length = items.length;
                     if(load_to_html) {
                         $('.fonts').html( self.createFontLoaderHTML(items) );
                         return;
