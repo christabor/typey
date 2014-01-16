@@ -143,18 +143,18 @@ var fonTypey = (function (options) {
             dropdowns.on('click', 'li a', function(e){
                 e.stopImmediatePropagation();
                 e.preventDefault();
-                var name,
-                opts,
-                _this = $(this),
-                weight,
-                style,
-                target,
-                variant;
+                var _this = $(this);
+                var name;
+                var opts;
+                var weight;
+                var style;
+                var target;
+                var variant;
 
                 target = $(this).parent().parent().parent();
 
                 dropdowns
-                .find('.fonts li, .fonts li a')
+                .find('li, li a')
                 .removeClass(ACTIVE_CSS_CLASS);
                 _this.parent().addClass(ACTIVE_CSS_CLASS);
                 _this.addClass(ACTIVE_CSS_CLASS);
