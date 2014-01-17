@@ -144,13 +144,10 @@ var fonTypey = (function (options) {
         },
         createExportObject: function() {
             'use strict';
-            font_exports  = this.roundupStyles($('h1').eq(0));
-            font_exports += this.roundupStyles($('h2').eq(0));
-            font_exports += this.roundupStyles($('h3').eq(0));
-            font_exports += this.roundupStyles($('h4').eq(0));
-            font_exports += this.roundupStyles($('h5').eq(0));
-            font_exports += this.roundupStyles($('h6').eq(0));
-            font_exports += this.roundupStyles($('blockquote').eq(0));
+            self = this;
+            $.each(editable, function(k, tag){
+                font_exports += self.roundupStyles($(this));
+            });
             exported_content.text(font_exports);
         },
         registerExports: function() {

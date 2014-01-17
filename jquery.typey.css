@@ -16,8 +16,6 @@
 }
 [data-typey-font-list] {
     background-color: #222;
-    border-radius: 0 0 8px 8px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
     color: #fff;
     display: none;
     font-family: Helvetica, Arial, sans-serif;
@@ -29,6 +27,11 @@
     top:100%;
     width: 100%;
     z-index: 1000;
+}
+[data-typey-font-list],
+.font-dropdown > ul {
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 }
 [data-typey-font-list] a {
     border: 1px solid #f1f1f1;
@@ -62,12 +65,13 @@
     margin: 0;
     padding: 1em;
     width: auto;
+    line-height: 1em;
 }
 [data-typey-font-list] > li {
     display: inline-block;
     height: 100%;
     background-color: #333;
-    margin: 2px;
+    margin: 0 1px;
 }
 [data-typey-font-list] .font-dropdown:before {
     color: white;
