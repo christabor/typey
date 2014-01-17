@@ -1,80 +1,114 @@
-.typer {
+
+/* Optional classes */
+
+[data-typey-randomize-fonts] { }
+[data-typey-font-history] { }
+[data-typey-font-exporter] { }
+[data-typey-font-export] { }
+
+/* Main dropdown classes */
+
+[data-typey-editable] {
     position: relative;
 }
-.typer ul {
-    display: none;
-    position: absolute;
-    z-index: 1000;
-    top:100%;
-    height: 400px;
-    overflow-y: scroll;
-    left: 0;
+[data-typey-editable]:hover [data-typey-font-list] {
+    display: block;
+}
+[data-typey-font-list] {
     background-color: #222;
-    color: #fff;
-    padding: 4px;
-    box-shadow: 0 10px 10px #888;
-    border-top: none;
     border-radius: 0 0 8px 8px;
-}
-.fonts {
-    display: none;
-}
-.typer:hover .fonts {
-    display: block;
-}
-.typer .fonts li {
-    list-style-type: none;
-    margin: 0;
-    height: 4em;
-    padding: 1em;
-    display: block;
-    width: auto;
-    text-align: left;
-    font-style: normal;
-    font-weight: normal;
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 1.3em;
-    border-top: 1px solid #333;
-    border-bottom: 1px solid #333;
-}
-.typer .fonts li a {
-    display: inline-block;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
     color: #fff;
-    margin-right: 5px;
-    border-radius:4px;
+    display: none;
+    font-family: Helvetica, Arial, sans-serif;
+    left: 0;
+    margin: 0;
+    min-width: 400px;
+    padding: 4px;
+    position: absolute;
+    top:100%;
+    width: 100%;
+    z-index: 1000;
+}
+[data-typey-font-list] a {
     border: 1px solid #f1f1f1;
-    padding: 5px 8px;
+    border-radius:4px;
+    color: #fff;
+    display: inline-block;
+    margin: 0 10px;
+    padding: 4px 8px;
     text-decoration: none;
 }
-.fonts li.active {
-    background-color: #000;
-}
-.fonts li a:hover,
-.fonts li.active a.active {
+[data-typey-font-list] a:hover,
+[data-typey-font-list] a.active {
     background-color: #fff;
     color: #000;
     cursor: pointer;
 }
-.typer .fonts li .variant {
+[data-typey-font-list] ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+[data-typey-font-list] li {
+    border: 1px solid #333;
+    border-left: none;
+    border-right: none;
+    display: block;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: normal;
+    list-style-type: none;
+    margin: 0;
+    padding: 1em;
+    width: auto;
+}
+[data-typey-font-list] > li {
     display: inline-block;
-    border:1px solid #555;
-    margin: 0 5px 0 0;
-    border-radius: 4px;
+    height: 100%;
+    background-color: #333;
+    margin: 2px;
+}
+[data-typey-font-list] .font-dropdown:before {
+    color: white;
+    display: block;
     font-size: 90%;
 }
-.typer .fonts li .variant:hover {
+[data-typey-font-list] .font-list:before {
+    content: 'Fonts';
+}
+[data-typey-font-list] .font-weights:before {
+    content: 'Weights';
+}
+[data-typey-font-list] .font-dropdown:hover {
+    background-color: #444;
+}
+[data-typey-font-list] .font-dropdown ul {
+    background-color: black;
+    display: none;
+    height: 400px;
+    left: 0;
+    overflow-y: scroll;
+    padding: 0;
+    position: absolute;
+    top: 45px;
+    width: 100%;
+    z-index: 1001;
+}
+[data-typey-font-list] .font-dropdown:hover ul {
+    display: block;
+}
+[data-typey-font-list] .font-dropdown li.active {
+    background-color: #000;
+}
+[data-typey-font-list] .font-dropdown li .variant {
+    border:1px solid #555;
+    border-radius: 4px;
+    display: inline-block;
+    font-size: 90%;
+    margin: 0 5px 0 0;
+}
+[data-typey-font-list] .font-dropdown li .variant:hover {
     background-color: #444;
     color:#fff;
-}
-#exported-css code {
-    padding: 1em;
-    background-color: #000;
-    border-radius: 6px;
-    display: block;
-    margin: 1em 0 0 0 ;
-    color: lightgreen;
-    font-size: 60%;
-    white-space: pre-line;
 }

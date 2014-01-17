@@ -25,6 +25,29 @@ var fonTypey = (function (options) {
         return;
     }
     return {
+        generateDropdownTools: function(fonts, load_to_html) {
+            var length            = fonts.length;
+            var list_html         = self.createFontLoaderHTML(fonts);
+
+            // DOM element construction
+            var font_list         = $('<li class="font-list font-dropdown"></li>');
+            var font_size_slider  = $('<li class="font-sizes">Font size</li>');
+            var slider_controls   = $('<span class="slider"><a href="#">16px</a><a href="#">24px</a><a href="#">32px</a><a href="#">48px</a></span>');
+
+            font_size_slider
+            .append(slider_controls);
+
+            font_list
+            .html(list_html);
+
+            if(load_to_html) {
+                dropdowns
+                .append(font_list)
+                .append(font_size_slider);
+            } else {
+                return fonts;
+            }
+        },
         generateRandomFonts: function(number) {
             'use strict';
             var fonts = [];
@@ -53,14 +76,22 @@ var fonTypey = (function (options) {
             });
             return;
         },
-        createFontLoaderHTML: function(items) {
+        createFontLoaderHTML: function(fonts) {
             'use strict';
             var dropdown = [];
-            var _items = $(items);
-            self = this;
+            var _items   = $(fonts);
+            self         = this;
+
+            // add a parent container
+            dropdown.push('<ul>');
+
+            // add the list of fonts
             _items.each(function (key, font) {
-                dropdown.push('<li><a href="#" class="font-main">' + items[key].family + '</a>' + self.createVariants(items[key].family, items[key].variants) + '</li>');
+                dropdown.push('<li><a href="#" class="font-main">' + fonts[key].family + '</a>' + self.createVariants(fonts[key].family, fonts[key].variants) + '</li>');
             });
+
+            // close out the parent container
+            dropdown.push('</ul>');
             return dropdown.join('');
         },
         createVariants: function(font, variants) {
@@ -77,15 +108,7 @@ var fonTypey = (function (options) {
             $.get(url, function (d) {
                 obj.fonts = d.items;
                 if (obj.fonts) {
-                    var items = obj.fonts;
-                    var length = items.length;
-                    if(load_to_html) {
-                        $('.fonts').html( self.createFontLoaderHTML(items) );
-                        return;
-                    } else {
-                        console.log(items);
-                        return items;
-                    }
+                    self.generateDropdownTools(obj.fonts, true);
                 }
             });
         },
@@ -140,6 +163,17 @@ var fonTypey = (function (options) {
         registerFontEvents: function() {
             'use strict';
             self = this;
+            dropdowns.on('click.changeSize', '.font-sizes a', function(e){
+                e.stopImmediatePropagation();
+                e.preventDefault();
+                var css    = $(this).text();
+                var target = $(this)
+                .parent()
+                .parent()
+                .parent()
+                .parent();
+                target.css('font-size', css);
+            });
             dropdowns.on('click', 'li a', function(e){
                 e.stopImmediatePropagation();
                 e.preventDefault();
@@ -151,7 +185,12 @@ var fonTypey = (function (options) {
                 var target;
                 var variant;
 
-                target = $(this).parent().parent().parent();
+                target = $(this)
+                .parent()
+                .parent()
+                .parent()
+                .parent()
+                .parent();
 
                 dropdowns
                 .find('li, li a')
