@@ -16,7 +16,6 @@ var fonTypey = (function (options) {
     var exported_content = $('[data-typey-font-export]');
     var editable         = $('[data-typey-editable]');
     var dropdowns        = $('[data-typey-font-list]');
-    var font_exports;
     var length;
 
     if(!opts.api_key) {
@@ -60,22 +59,6 @@ var fonTypey = (function (options) {
             }
             return fonts;
         },
-        registerRandomButton: function() {
-            'use strict';
-            self = this;
-
-            // register random event
-            random_btn.on('click', function(e){
-                e.preventDefault();
-                var rand = self.generateRandomFonts(dropdowns.length);
-                $.each(dropdowns, function(k, dropdown_list){
-                    var rand_key = Math.floor(Math.random() * rand.length);
-                    $(dropdown_list).find('li .font-main').eq(rand[rand_key]).click();
-                });
-                return;
-            });
-            return;
-        },
         createFontLoaderHTML: function(fonts) {
             'use strict';
             var dropdown = [];
@@ -87,14 +70,14 @@ var fonTypey = (function (options) {
 
             // add the list of fonts
             _items.each(function (key, font) {
-                dropdown.push('<li><a href="#" class="font-main">' + fonts[key].family + '</a>' + self.createVariants(fonts[key].family, fonts[key].variants) + '</li>');
+                dropdown.push('<li><a href="#" class="font-main">' + fonts[key].family + '</a>' + self.createFontVariants(fonts[key].family, fonts[key].variants) + '</li>');
             });
 
             // close out the parent container
             dropdown.push('</ul>');
             return dropdown.join('');
         },
-        createVariants: function(font, variants) {
+        createFontVariants: function(font, variants) {
             'use strict';
             var html = '';
             for(var variant in variants) {
@@ -102,7 +85,7 @@ var fonTypey = (function (options) {
             }
             return html;
         },
-        requestFontLibrary: function(load_to_html) {
+        loadFonts: function(load_to_html) {
             'use strict';
             self = this;
             $.get(url, function (d) {
@@ -135,32 +118,41 @@ var fonTypey = (function (options) {
         },
         roundupStyles: function(selector) {
             'use strict';
-            var code = selector[0].tagName.toLowerCase() + ' {\r\n';
+            console.log(selector[0].nodeName.toLowerCase() );
+            var code;
+            code = selector[0].nodeName.toLowerCase() + ' {\r\n';
             code += 'font-style: ' + selector.css('font-style') + ';\r\n';
             code += 'font-weight: ' + selector.css('font-weight') + ';\r\n';
             code += 'font-family: ' + (selector.css('font-style').split(",") ? selector.css('font-family') : "'" + selector.css('font-style') + "'") + ';\r\n';
             code += '}\r\n';
             return code;
         },
-        createExportObject: function() {
+        exportCSS: function() {
             'use strict';
+            var font_exports = '';
             self = this;
             $.each(editable, function(k, tag){
                 font_exports += self.roundupStyles($(this));
             });
+            exported_content.html('');
             exported_content.text(font_exports);
         },
-        registerExports: function() {
+        registerEvents: function() {
             'use strict';
             self = this;
-            export_btn.on('click', function(e) {
-                self.createExportObject();
+            random_btn.on('click.random-click', function(e){
+                e.preventDefault();
+                var rand = self.generateRandomFonts(dropdowns.length);
+                $.each(dropdowns, function(k, dropdown_list){
+                    var rand_key = Math.floor(Math.random() * rand.length);
+                    $(dropdown_list).find('li .font-main').eq(rand[rand_key]).click();
+                });
             });
-        },
-        registerFontEvents: function() {
-            'use strict';
-            self = this;
-            dropdowns.on('click.changeSize', '.font-sizes a', function(e){
+            export_btn.on('click.export-code', function(e) {
+                e.preventDefault();
+                self.exportCSS();
+            });
+            dropdowns.on('click.change-size', '.font-sizes a', function(e){
                 e.stopImmediatePropagation();
                 e.preventDefault();
                 var css    = $(this).text();
@@ -255,10 +247,8 @@ var fonTypey = (function (options) {
             });
 },
 initAllFeatures: function() {
-    this.requestFontLibrary(true);
-    this.registerRandomButton();
-    this.registerFontEvents();
-    this.registerExports();
+    this.loadFonts(true);
+    this.registerEvents();
 }
 };
 });
