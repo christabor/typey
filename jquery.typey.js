@@ -118,7 +118,6 @@ var fonTypey = (function (options) {
         },
         roundupStyles: function(selector) {
             'use strict';
-            console.log(selector[0].nodeName.toLowerCase() );
             var code;
             code = selector[0].nodeName.toLowerCase() + ' {\r\n';
             code += 'font-style: ' + selector.css('font-style') + ';\r\n';
