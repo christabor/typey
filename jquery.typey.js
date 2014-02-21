@@ -2,6 +2,8 @@ var fonTypey = (function (options) {
     var self;
     var defaults         = {
         api_key: '',
+        auto_add: false,
+        auto_add_els: null,
         store_history: true,
         debug: false
     };
@@ -248,6 +250,13 @@ var fonTypey = (function (options) {
 initAllFeatures: function() {
     this.loadFonts(true);
     this.registerEvents();
+    if(opts.auto_add && opts.auto_add_els) {
+        opts.auto_add_els
+        .prepend('<ul class="fonts" data-typey-font-list></ul>')
+        .append('<div class="font-name"></div>')
+        .attr('data-typey-editable', '')
+        .addClass('typer');
+    }
 }
 };
 });
