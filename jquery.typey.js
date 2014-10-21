@@ -7,6 +7,7 @@ var fonTypey = (function (options) {
         store_history: true,
         debug: false
     };
+    var font_data        = null;
     var opts             = $.extend(defaults, options);
     var base_url         = 'https://www.googleapis.com/webfonts/v1/webfonts';
     var url              = [base_url, '?key=', opts.api_key].join('');
@@ -26,6 +27,9 @@ var fonTypey = (function (options) {
         return;
     }
     return {
+        getFontData: function() {
+            return font_data;
+        },
         generateDropdownTools: function(fonts, load_to_html) {
             var length            = fonts.length;
             var list_html         = self.createFontLoaderHTML(fonts);
@@ -93,6 +97,7 @@ var fonTypey = (function (options) {
             $.get(url, function (d) {
                 obj.fonts = d.items;
                 if (obj.fonts) {
+                    font_data = obj.fonts;
                     self.generateDropdownTools(obj.fonts, true);
                 }
             });
