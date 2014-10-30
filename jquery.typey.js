@@ -53,20 +53,35 @@ var fonTypey = (function (options) {
                 return fonts;
             }
         },
+        getRandomFontList: function(number) {
+            // Returns a random set of font objects
+            // from the loaded data.
+            var MAX_RANDOM_FONTS = 10;
+            var length = 0;
+            var fonts = [];
+            if(!font_data) throw new Error('Fonts haven\'t been loaded yet.');
+            if(number > font_data.length || number > MAX_RANDOM_FONTS) {
+                throw new Error('Too many fonts, or font number larger than the number of available fonts. Please choose at most, ' + MAX_RANDOM_FONTS + ' fonts.');
+            }
+            length = font_data.length;
+            for(var i = 0; i <= number; i++) {
+                var random_key = ~~(Math.random() * length);
+                fonts.push(font_data[random_key]);
+            }
+            return fonts;
+        },
         generateRandomFonts: function(number) {
-            'use strict';
             var fonts = [];
             length = $('.fonts:first li').length;
 
             // randomize an array to N selections
             for(var i = 0; i <= number; i++) {
-                var random_key = Math.floor(Math.random() * length);
+                var random_key = ~~(Math.random() * length);
                 fonts.push(random_key);
             }
             return fonts;
         },
         createFontLoaderHTML: function(fonts) {
-            'use strict';
             var dropdown = [];
             var _items   = $(fonts);
             self         = this;
@@ -84,7 +99,6 @@ var fonTypey = (function (options) {
             return dropdown.join('');
         },
         createFontVariants: function(font, variants) {
-            'use strict';
             var html = '';
             for(var variant in variants) {
                 html += '<a href="#" class="variant" data-font-main="'+font+'">' + variants[variant] + '</a>';
@@ -92,7 +106,6 @@ var fonTypey = (function (options) {
             return html;
         },
         loadFonts: function(load_to_html) {
-            'use strict';
             self = this;
             $.get(url, function (d) {
                 obj.fonts = d.items;
@@ -103,11 +116,9 @@ var fonTypey = (function (options) {
             });
         },
         addToHistory: function (font) {
-            'use strict';
             if(opts.store_history) {
                 font_history.prepend('<li>' + font + '</li>');
             }
-            return;
         },
         createStyleLink: function(name, weight, is_weight) {
             'use strict';
@@ -117,7 +128,6 @@ var fonTypey = (function (options) {
             } else {
                 url = name.split(' ').join('+');
             }
-
             // slight timing throttle
             setTimeout(function(){
                 return  $('#google-font-style').attr('href', 'http://fonts.googleapis.com/css?family=' + url );
