@@ -1,3 +1,6 @@
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/christabor/typey/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+[![MIT Badge](http://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/christabor/typey/master/LICENSE)
+
 typey
 =====
 
@@ -12,6 +15,3 @@ $(document).ready(function(){
     fonTypeyLoader.initAllFeatures('dom-element-scope');
 });
 ```
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/christabor/typey/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
