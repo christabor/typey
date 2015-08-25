@@ -7,7 +7,14 @@ typey
 An api wrapper for Google Fonts, making it easy to load and show all fonts at once.
 
 ## Usage
+
+### Add this data attribute and list within any element you want the UI to show up at.
+
+```html
+<h1 data-typey-editable><ul class="fonts" data-type-font-list></ul>Heading!</h1>
 ```
+
+```javascript
 $(document).ready(function(){
     var fonTypeyLoader = fonTypey({
         api_key: YOUR_GOOGLE_API_KEY
@@ -15,3 +22,11 @@ $(document).ready(function(){
     fonTypeyLoader.initAllFeatures('dom-element-scope');
 });
 ```
+
+## Options
+
+* `api_key` [string] - (required) - the api key for google fonts
+* `auto_add` [bool] - auto add typey dropdowns to elements
+* `auto_add_els` [object] - jquery selector with all elements to auto add typey dropdowns to
+* `store_history` [bool] - whether or not to create a history list. An html element with *data-typey-font-history* must exist.
+* `debug` [bool] - allow debug data to show
