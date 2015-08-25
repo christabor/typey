@@ -23,8 +23,6 @@ $(document).ready(function(){
 });
 ```
 
-For randomized fonts, add `data-typey-randomize-fonts` to any button.
-
 ## Options
 
 * `api_key` [string] - (required) - the api key for google fonts
@@ -32,3 +30,14 @@ For randomized fonts, add `data-typey-randomize-fonts` to any button.
 * `auto_add_els` [object] - jquery selector with all elements to auto add typey dropdowns to
 * `store_history` [bool] - whether or not to create a history list. An html element with *data-typey-font-history* must exist.
 * `debug` [bool] - allow debug data to show
+
+## Other stuff
+
+#### Random fonts
+For randomized fonts, add `data-typey-randomize-fonts` to any button.
+
+#### History
+For a history of fonts clicked, add a ul element with `data-typey-font-history` set.
+
+#### Export UI
+To add exporting css UI, add `data-typey-font-exporter` to any button, and add `data-typey-font-export` to any element where you want the exported code to show up at.
