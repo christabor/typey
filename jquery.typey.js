@@ -37,7 +37,7 @@ var fonTypey = (function (options) {
             // DOM element construction
             var font_list         = $('<li class="font-list font-dropdown"></li>');
             var font_size_slider  = $('<li class="font-sizes">Font size</li>');
-            var slider_controls   = $('<span class="slider"><a href="#">16px</a><a href="#">24px</a><a href="#">32px</a><a href="#">48px</a></span>');
+            var slider_controls   = $('<span class="slider">' + $.map([9, 12, 14, 16, 18, 24, 32, 48, 72, 84, 96, 120], function(num){ return '<a href="#">' + num + 'px</a>';}).join('') + '</span>');
 
             font_size_slider
             .append(slider_controls);

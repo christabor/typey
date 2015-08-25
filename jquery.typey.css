@@ -29,6 +29,9 @@
     width: 100%;
     z-index: 1000;
 }
+[data-typey-font-list] * {
+    font-size: 9px;
+}
 [data-typey-font-list],
 [data-typey-font-list] > li {
     height: 46px;
@@ -62,7 +65,6 @@
     border-left: none;
     border-right: none;
     display: block;
-    font-size: 14px;
     font-style: normal;
     font-weight: normal;
     list-style-type: none;
@@ -83,7 +85,6 @@
 [data-typey-font-list] .font-dropdown:before {
     color: white;
     display: block;
-    font-size: 90%;
 }
 [data-typey-font-list] .font-list:before {
     content: 'Fonts';
@@ -120,7 +121,6 @@
     border:1px solid #555;
     border-radius: 4px;
     display: inline-block;
-    font-size: 90%;
     margin: 0 5px 0 0;
 }
 [data-typey-font-list] .font-dropdown li .variant:hover {
