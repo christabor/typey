@@ -36,8 +36,8 @@ var fonTypey = (function (options) {
 
             // DOM element construction
             var font_list         = $('<li class="font-list font-dropdown"></li>');
-            var font_size_slider  = $('<li class="font-sizes">Font size</li>');
-            var slider_controls   = $('<span class="slider">' + $.map([9, 12, 14, 16, 18, 24, 32, 48, 72, 84, 96, 120], function(num){ return '<a href="#">' + num + 'px</a>';}).join('') + '</span>');
+            var font_size_slider  = $('<li class="font-sizes"></li>');
+            var slider_controls   = $('<ul class="slider">' + $.map([9, 12, 14, 16, 18, 24, 32, 48, 72, 84, 96, 120], function(num){ return '<li><a href="#">' + num + 'px</a></li>';}).join('') + '</ul>');
 
             font_size_slider
             .append(slider_controls);
@@ -112,6 +112,7 @@ var fonTypey = (function (options) {
                 if (obj.fonts) {
                     font_data = obj.fonts;
                     self.generateDropdownTools(obj.fonts, true);
+                    self.registerEvents();
                 }
             });
         },
@@ -263,15 +264,13 @@ var fonTypey = (function (options) {
             });
 },
 initAllFeatures: function() {
-    this.loadFonts(true);
-    this.registerEvents();
     if(opts.auto_add && opts.auto_add_els) {
         opts.auto_add_els
         .prepend('<ul class="fonts" data-typey-font-list></ul>')
-        .append('<div class="font-name"></div>')
         .attr('data-typey-editable', '')
-        .addClass('typer');
+        .addClass('typer fonts');
     }
+    this.loadFonts(true);
 }
 };
 });

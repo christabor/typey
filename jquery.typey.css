@@ -12,7 +12,7 @@
     position: relative;
 }
 [data-typey-editable]:hover [data-typey-font-list] {
-    display: block;
+    display: inline-block;
 }
 [data-typey-font-list] {
     text-align: left;
@@ -22,11 +22,9 @@
     font-family: Helvetica, Arial, sans-serif;
     left: 0;
     margin: 0;
-    min-width: 400px;
     padding: 0;
     position: absolute;
     top:100%;
-    width: 100%;
     z-index: 1000;
 }
 [data-typey-font-list] * {
@@ -34,7 +32,7 @@
 }
 [data-typey-font-list],
 [data-typey-font-list] > li {
-    height: 46px;
+    height: 30px;
 }
 [data-typey-font-list],
 .font-dropdown > ul {
@@ -46,7 +44,7 @@
     color: #fff;
     display: inline-block;
     margin: 0 2px;
-    padding: 4px 8px;
+    padding: 2px 10px;
     text-decoration: none;
 }
 [data-typey-font-list] a:hover,
@@ -71,16 +69,15 @@
     margin: 0;
     padding: 0.7em;
     width: auto;
+    position: relative;
 }
 [data-typey-font-list] > li {
     display: inline-block;
     float: left;
     background-color: #333;
     margin: 0 1px;
-}
-[data-typey-font-list] .slider {
-    display: inline-block;
-    padding-left: 10px;
+    line-height: 24px;
+    padding: 2px 8px;
 }
 [data-typey-font-list] .font-dropdown:before {
     color: white;
@@ -89,16 +86,19 @@
 [data-typey-font-list] .font-list:before {
     content: 'Fonts';
 }
+[data-typey-font-list] .font-sizes:before {
+    content: 'Sizes';
+}
 [data-typey-font-list] .font-weights:before {
     content: 'Weights';
 }
 [data-typey-font-list] .font-dropdown:hover {
     background-color: #444;
 }
-[data-typey-font-list] .font-dropdown {
-    line-height: 24px;
-}
 [data-typey-font-list] .font-dropdown ul {
+    min-width: 500px;
+}
+[data-typey-font-list] li > ul {
     background-color: black;
     display: none;
     height: 400px;
@@ -106,12 +106,13 @@
     overflow-y: scroll;
     padding: 0;
     position: absolute;
-    top: 42px;
-    width: 100%;
+    top: 28px;
+    width: auto;
     z-index: 1001;
-    border-top: 4px solid #555;
+    border-top: 2px solid #555;
+    border-radius: 0 4px 4px 4px;
 }
-[data-typey-font-list] .font-dropdown:hover ul {
+[data-typey-font-list] li:hover > ul {
     display: block;
 }
 [data-typey-font-list] .font-dropdown li.active {
