@@ -8,7 +8,7 @@ An api wrapper for Google Fonts, making it easy to load and show all fonts at on
 
 ## Usage
 
-### Add this data attribute and list within any element you want the UI to show up at.
+*Add the below data attributes and list within any element you want the UI to show up at.*
 
 ```html
 <h1 data-typey-editable><ul class="fonts" data-type-font-list></ul>Heading!</h1>
