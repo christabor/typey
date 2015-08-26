@@ -180,12 +180,8 @@ var fonTypey = (function (options) {
             dropdowns.on('click.change-size', '.font-sizes a', function(e){
                 e.stopImmediatePropagation();
                 e.preventDefault();
-                var css    = $(this).text();
-                var target = $(this)
-                .parent()
-                .parent()
-                .parent()
-                .parent();
+                var css = $(this).text();
+                var target = self.getTarget($(this));
                 target.css('font-size', css);
             });
             dropdowns.on('click', 'li a', function(e){
@@ -198,8 +194,6 @@ var fonTypey = (function (options) {
                 var style;
                 var variant;
                 var target = self.getTarget($(this));
-                // console.log(target);
-
                 dropdowns
                 .find('li, li a')
                 .removeClass(ACTIVE_CSS_CLASS);
