@@ -154,6 +154,14 @@ var fonTypey = (function (options) {
             exported_content.html('');
             exported_content.text(font_exports);
         },
+        getTarget: function(el) {
+            // Default to current node if no target is specified.
+            el = el.closest('[data-typey-editable]');
+            if(!el.attr('data-typey-target')) {
+                return $(el[0].nodeName);
+            }
+            return $(el.data('typey-target'));
+        },
         registerEvents: function() {
             'use strict';
             self = this;
@@ -188,15 +196,9 @@ var fonTypey = (function (options) {
                 var opts;
                 var weight;
                 var style;
-                var target;
                 var variant;
-
-                target = $(this)
-                .parent()
-                .parent()
-                .parent()
-                .parent()
-                .parent();
+                var target = self.getTarget($(this));
+                // console.log(target);
 
                 dropdowns
                 .find('li, li a')

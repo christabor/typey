@@ -11,7 +11,7 @@ An api wrapper for Google Fonts, making it easy to load and show all fonts at on
 *Add the below data attributes and list within any element you want the UI to show up at.*
 
 ```html
-<h1 data-typey-editable><ul class="fonts" data-typey-font-list></ul>Heading!</h1>
+<h1 data-typey-editable data-typey-target="h1.foo"><ul class="fonts" data-typey-font-list></ul>Heading!</h1>
 ```
 
 ```javascript
